@@ -1,17 +1,18 @@
-package net.vandut.game.robox.scene.objects;
+package net.vandut.game.robox.scene.objects.sprite;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
-import net.vandut.game.robox.scene.GameObject;
+import com.badlogic.gdx.math.Vector2;
+import net.vandut.game.robox.scene.objects.MovingObject;
 
 /**
  * @author Konrad
  * @date 2015-05-16
  */
-public class SpriteObject implements GameObject {
+public class SpriteObject implements MovingObject {
 
-    private Sprite sprite;
+    private final Sprite sprite;
 
     private final float baseMovementSpeed;
     private final float baseRotationSpeed;
@@ -27,12 +28,8 @@ public class SpriteObject implements GameObject {
 
     @Override
     public void animate(float delta) {
-        sprite.rotate(rotationSpeed * delta);
-
-        sprite.translate(
-                MathUtils.cosDeg(sprite.getRotation() + 90.0f) * movementSpeed * delta,
-                MathUtils.sinDeg(sprite.getRotation() + 90.0f) * movementSpeed * delta
-        );
+        rotate(rotationSpeed * delta);
+        moveForward(movementSpeed * delta);
     }
 
     @Override
@@ -50,8 +47,18 @@ public class SpriteObject implements GameObject {
     }
 
     @Override
+    public Vector2 getPosition() {
+        return new Vector2(sprite.getX(), sprite.getY());
+    }
+
+    @Override
     public void setAngle(float degrees) {
         sprite.setRotation(degrees);
+    }
+
+    @Override
+    public float getAngle() {
+        return sprite.getRotation();
     }
 
     @Override
@@ -73,8 +80,18 @@ public class SpriteObject implements GameObject {
     }
 
     @Override
+    public float getMovementSpeed() {
+        return movementSpeed / baseMovementSpeed;
+    }
+
+    @Override
     public void setRotationSpeed(float rotationSpeed) {
         this.rotationSpeed = baseRotationSpeed * rotationSpeed;
+    }
+
+    @Override
+    public float getRotationSpeed() {
+        return rotationSpeed / baseRotationSpeed;
     }
 
 }

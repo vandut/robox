@@ -8,8 +8,8 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import net.vandut.game.robox.scene.GameScene;
-import net.vandut.game.robox.scene.objects.Tank;
-import net.vandut.game.robox.scene.objects.UserInputTank;
+import net.vandut.game.robox.scene.objects.UserInputMovingObject;
+import net.vandut.game.robox.scene.objects.sprite.SpriteTank;
 
 /**
  * @author Konrad
@@ -23,14 +23,15 @@ public class GameScreen implements Screen {
     private OrthographicCamera camera = new OrthographicCamera();
 
     private GameScene gameScene = new GameScene();
-    private Tank tank;
 
     public GameScreen(SpriteBatch batch) {
         this.batch = batch;
-        texture = new Texture(Gdx.files.internal("tank_g01.png"));
+        texture = new Texture(Gdx.files.internal("tank_g.png"));
 
-        tank = new UserInputTank(texture, new Vector2(100, 100));
-        gameScene.addGameObject(tank);
+        gameScene.addGameObject(
+                new UserInputMovingObject(
+                        new SpriteTank(texture, new Vector2(100, 100))
+                ));
     }
 
     @Override

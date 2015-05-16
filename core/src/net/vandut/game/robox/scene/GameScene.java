@@ -2,6 +2,8 @@ package net.vandut.game.robox.scene;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Array;
+import net.vandut.game.robox.scene.objects.GameObject;
+import net.vandut.game.robox.scene.objects.MovingObject;
 
 /**
  * @author Konrad
@@ -11,14 +13,14 @@ public class GameScene {
 
     private final static int INITIAL_SCENE_CAPACITY = 16;
 
-    Array<GameObject> objects = new Array<>(false, INITIAL_SCENE_CAPACITY, GameObject.class);
+    Array<MovingObject> objects = new Array<>(false, INITIAL_SCENE_CAPACITY, MovingObject.class);
 
-    public void addGameObject(GameObject gameObject) {
-        objects.add(gameObject);
+    public void addGameObject(MovingObject object) {
+        objects.add(object);
     }
 
     public void animate(float delta) {
-        for(GameObject object : objects) {
+        for(MovingObject object : objects) {
             object.animate(delta);
         }
     }

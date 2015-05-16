@@ -2,21 +2,16 @@ package net.vandut.game.robox.scene.objects;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.math.Vector2;
+import net.vandut.game.robox.scene.objects.wrapper.MovingObjectWrapper;
 
 /**
  * @author Konrad
  * @date 2015-05-16
  */
-public class UserInputTank extends Tank {
+public class UserInputMovingObject extends MovingObjectWrapper {
 
-    public UserInputTank(Texture texture) {
-        super(texture);
-    }
-
-    public UserInputTank(Texture texture, Vector2 position) {
-        super(texture, position);
+    public UserInputMovingObject(MovingObject movingObject) {
+        super(movingObject);
     }
 
     @Override
